@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Daum Book API
+Plugin Name: daum book api
 Plugin URI: http://parkyong.com
 Description: search book and add book information to post
 Version: 1.0
@@ -34,7 +34,7 @@ add_shortcode( 'daumbook', 'daum_book_shortcode' );
 
 
 function daum_book_menu() {
-	add_options_page( __('Daum Book Api Setting Page', 'daum-book-plugin'), 
+	add_options_page( __('Daum Book API Setting Page', 'daum-book'), 
 		__('Daum Book API Setting', 'daum-book-plugin'), 'administrator', __FILE__, 'daum_book_setting_page');
 }
 
@@ -48,12 +48,12 @@ function daum_book_setting_page () {
 	$daum_api_key = $daum_book_options['api_key'];
 	?>
 	<div class="wrap">
-		<h2><?php _e('DAUM BOOK API OPTIONS', 'daum-book-plugin') ?></h2>
+		<h2><?php _e('DAUM BOOK API OPTIONS', 'daum-book') ?></h2>
 		<form method="post" action="options.php">
 			<?php settings_fields( 'daum-book-settings-group'); ?>
 			<table class="form-table">
 				<tr valign="top">
-					<th scope="row"><?php _e('Enter API Key', 'daum-book-plugin'); ?></th>
+					<th scope="row"><?php _e('Enter API Key', 'daum-book'); ?></th>
 					<td><input type="text" name="daum_book_options[api_key]" value="<?php echo $daum_api_key; ?>"></td>
 				</tr>
 			</table>
@@ -61,7 +61,7 @@ function daum_book_setting_page () {
 			<a href="https://developers.daum.net/services">Click</a>
 			
 			<p class="submit">
-			<input type="submit" class="button-primary" value="<?php _e('Save Changes', 'daum-book-plugin' ); ?>" >
+			<input type="submit" class="button-primary" value="<?php _e('Save Changes', 'daum-book' ); ?>" >
 			</p>
 		</form>
 	</div>
@@ -69,7 +69,7 @@ function daum_book_setting_page () {
 }
 
 function daum_book_init() {
-	add_meta_box( 'daum-book-meta', __('Daum Book Api', 'daum-book-plugin' ), 'daum_book_meta_box', 'post', 'side', 'default' );
+	add_meta_box( 'daum-book-meta', __('Daum Book Api', 'daum-book' ), 'daum_book_meta_box', 'post', 'side', 'default' );
 }
 
 function daum_book_meta_box ( $post, $box ) {
@@ -79,7 +79,7 @@ function daum_book_meta_box ( $post, $box ) {
 
 	echo '<table>';
 	echo '<tr>';
-	echo '<td>' . __('Title', 'daum-book-plugin') . ':</td><td><input type="text" name="dba_title" value="' . esc_attr($dba_title) . '" size="10" /></td>';
+	echo '<td>' . __('Title', 'daum-book') . ':</td><td><input type="text" name="dba_title" value="' . esc_attr($dba_title) . '" size="10" /></td>';
 	echo '</tr><tr>';
 	echo '</table>';
 
