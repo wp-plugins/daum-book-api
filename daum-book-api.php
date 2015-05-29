@@ -3,10 +3,12 @@
 Plugin Name: daum book api
 Plugin URI: http://parkyong.com
 Description: search book and add book information to post
-Version: 1.0
+Version: 1.0.1
 Author: Park Yong
 Author URI: http://parkyong.com
 License: GPLv2 or later
+Text Domain: daum-book
+Domain Path: /languages/
 */
 
 /*
@@ -32,10 +34,16 @@ add_action( 'save_post', 'daum_book_save_meta_box', 10, 2 );
 add_action( 'admin_init', 'daum_book_init' );
 add_shortcode( 'daumbook', 'daum_book_shortcode' );
 
+add_action('plugins_loaded', 'daum_book_load_textdomain');
+
+function daum_book_load_textdomain() {
+	load_plugin_textdomain( 'daum-book', false, dirname( plugin_basename(__FILE__) ) . '/languages/' );
+}
+
 
 function daum_book_menu() {
 	add_options_page( __('Daum Book API Setting Page', 'daum-book'), 
-		__('Daum Book API Setting', 'daum-book-plugin'), 'administrator', __FILE__, 'daum_book_setting_page');
+		__('Daum Book API Setting', 'daum-book'), 'administrator', __FILE__, 'daum_book_setting_page');
 }
 
 
@@ -70,6 +78,7 @@ function daum_book_setting_page () {
 
 function daum_book_init() {
 	add_meta_box( 'daum-book-meta', __('Daum Book Api', 'daum-book' ), 'daum_book_meta_box', 'post', 'side', 'default' );
+	
 }
 
 function daum_book_meta_box ( $post, $box ) {
